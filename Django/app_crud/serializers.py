@@ -24,3 +24,21 @@ class clarkserializer(serializers.ModelSerializer):
     class Meta:
         model = clark
         fields = '__all__'
+
+
+class courseserializer(serializers.ModelSerializer):
+    class Meta:
+        model = course
+        fields = '__all__'
+
+
+class busserializer(serializers.ModelSerializer):
+    class Meta:
+        model = bus
+        fields = '__all__'
+
+
+class salaryserializer(serializers.ModelSerializer):
+    class Meta:
+        model = salary
+        fields = '__all__'
