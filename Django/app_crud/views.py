@@ -5,10 +5,9 @@ from rest_framework.response import Response
 from .serializers import schoolserializer
 from .serializers import studentserializer
 from .serializers import teacherserializer
-from .serializers import clarkserializer
 from .serializers import courseserializer
 from .serializers import busserializer
-from .serializers import salaryserializer
+from .serializers import Facultyserializer
 from .models import *
 from django.db.models import Q
 
@@ -155,44 +154,44 @@ def up_teacher(request, pk, tn, stn, ct, ts):
     return Response(serial.data)
 
 
-@api_view(['GET'])
-def add_clark(request, cn, cp, cs):
-    find = school.objects.filter(school_name=cs).first()
-    clark.objects.create(
-        clark_name=cn,
-        clark_position=cp,
-        clark_school=cs,
-        sch=find
-    )
-    all_clark = clark.objects.all()
-    serial = clarkserializer(all_clark, many=True)
-    return Response(serial.data)
-
-
-@api_view(['GET'])
-def all_clark(request):
-    All_clark = clark.objects.all()
-    serial = clarkserializer(All_clark, many=True)
-    return Response(serial.data)
-
-
-@api_view(['GET'])
-def del_clark(request, pk):
-    one_delete = get_object_or_404(clark, id=pk)
-    one_delete.delete()
-    serializer = clarkserializer(one_delete)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def up_clark(request, pk, cn, cp, cs):
-    one_update = get_object_or_404(clark, id=pk)
-    one_update.clark_name = cn
-    one_update.clark_position = cp
-    one_update.clark_school = cs
-    one_update.save()
-    serial = clarkserializer(one_update)
-    return Response(serial.data)
+# @api_view(['GET'])
+# def add_clark(request, cn, cp, cs):
+#     find = school.objects.filter(school_name=cs).first()
+#     clark.objects.create(
+#         clark_name=cn,
+#         clark_position=cp,
+#         clark_school=cs,
+#         sch=find
+#     )
+#     all_clark = clark.objects.all()
+#     serial = clarkserializer(all_clark, many=True)
+#     return Response(serial.data)
+#
+#
+# @api_view(['GET'])
+# def all_clark(request):
+#     All_clark = clark.objects.all()
+#     serial = clarkserializer(All_clark, many=True)
+#     return Response(serial.data)
+#
+#
+# @api_view(['GET'])
+# def del_clark(request, pk):
+#     one_delete = get_object_or_404(clark, id=pk)
+#     one_delete.delete()
+#     serializer = clarkserializer(one_delete)
+#     return Response(serializer.data)
+#
+#
+# @api_view(['GET'])
+# def up_clark(request, pk, cn, cp, cs):
+#     one_update = get_object_or_404(clark, id=pk)
+#     one_update.clark_name = cn
+#     one_update.clark_position = cp
+#     one_update.clark_school = cs
+#     one_update.save()
+#     serial = clarkserializer(one_update)
+#     return Response(serial.data)
 
 
 @api_view(['GET'])
@@ -283,19 +282,50 @@ def view_area(request, aa):
     return Response(serializer.data)
 
 
-# @api_view(['GET'])
-# def add_salary(request, ts, tn):
-#     find = teacher.objects.filter(teacher_name=tn).first()
-#     salary.objects.create(
-#         teacher_salary=ts,
-#         teacher_name=tn,
-#         tech=find
-#     )
-#     all_staf = salary.objects.all()
-#     serial = salaryserializer(all_staf, many=True)
-#     return Response(serial.data)
-#
-#
 @api_view(['GET'])
-def all_staf_salary(request):
-    all = teacher.objects.all()
+def add_faculty(request, fn, fp, fs, sof):
+    find = school.objects.filter(school_name=sof).first()
+    Faculty.objects.create(
+        faculty_name=fn,
+        faculty_position=fp,
+        faculty_salary=fs,
+        school_of_faculty=sof,
+        sch=find
+    )
+    All_faculty = Faculty.objects.all()
+    serial = Facultyserializer(All_faculty, many=True)
+    return Response(serial.data)
+
+
+@api_view(['GET'])
+def all_faculty(request):
+    all_f = Faculty.objects.all()
+    serial = Facultyserializer(all_f, many=True)
+    return Response(serial.data)
+
+
+@api_view(['GET'])
+def del_faculty(request, pk):
+    Del_faculty = get_object_or_404(Faculty, id=pk)
+    Del_faculty.delete()
+    serial = Facultyserializer(Del_faculty)
+    return Response(serial.data)
+
+
+@api_view(['GET'])
+def up_faculty(request, pk, fn, fp, fs, sof):
+    Up_faculty = get_object_or_404(Faculty, id=pk)
+    Up_faculty.faculty_name = fn
+    Up_faculty.faculty_position = fp
+    Up_faculty.faculty_salary = fs
+    Up_faculty.school_of_faculty = sof
+    serial = Facultyserializer(Up_faculty)
+    return Response(serial.data)
+
+
+@api_view(['GET'])
+def view_faculty(request,vf):
+    if vf == 'teacher' or vf == 'Teacher':
+        pass
+
+    else:

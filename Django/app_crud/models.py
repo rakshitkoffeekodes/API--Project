@@ -44,18 +44,19 @@ class student(models.Model):
     sch = models.ForeignKey(school, on_delete=models.CASCADE)
     tch = models.ForeignKey(teacher, on_delete=models.CASCADE, null=True)
     Bus = models.ForeignKey(bus, on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return self.student_name
 
 
-class clark(models.Model):
-    clark_name = models.CharField(max_length=500)
-    clark_position = models.CharField(max_length=500)
-    clark_school = models.CharField(max_length=500)
-    sch = models.ForeignKey(school, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.clark_name
+# class clark(models.Model):
+#     clark_name = models.CharField(max_length=500)
+#     clark_position = models.CharField(max_length=500)
+#     clark_school = models.CharField(max_length=500)
+#     sch = models.ForeignKey(school, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.clark_name
 
 
 class course(models.Model):
@@ -67,10 +68,20 @@ class course(models.Model):
         return self.course_name
 
 
-class salary(models.Model):
-    teacher_salary = models.IntegerField(primary_key=True)
-    teacher_name = models.CharField(max_length=500)
-    tech = models.ForeignKey(teacher, on_delete=models.CASCADE)
+# class salary(models.Model):
+#     teacher_salary = models.IntegerField(primary_key=True)
+#     teacher_name = models.CharField(max_length=500)
+#     tech = models.ForeignKey(teacher, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.teacher_name + self.teacher_salary
+
+class Faculty(models.Model):
+    faculty_name = models.CharField(max_length=500)
+    faculty_position = models.CharField(max_length=500)
+    faculty_salary = models.CharField(max_length=100)
+    school_of_faculty = models.CharField(max_length=500)
+    sch = models.ForeignKey(school, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.teacher_name + self.teacher_salary
+        return self.faculty_name + " " + self.faculty_position + " " + self.school_of_faculty

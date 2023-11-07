@@ -15,10 +15,6 @@ urlpatterns = [
     path('all_teacher', views.all_teacher),
     path('del_teacher/<int:pk>', views.del_teacher),
     path('up_teacher/<int:pk>/<str:tn>/<str:stn>/<str:ct>/<str:ts>', views.up_teacher),
-    path('add_clark/<str:cn>/<str:cp>/<str:cs>', views.add_clark),
-    path('all_clark', views.all_clark),
-    path('del_clark/<int:pk>', views.del_clark),
-    path('up_clark/<int:pk>/<str:cn>/<str:cp>/<str:cs>', views.up_clark),
     path('add_course/<str:c>/<str:f>', views.add_course),
     path('all_course', views.all_course),
     path('del_course/<int:pk>', views.del_course),
@@ -29,6 +25,9 @@ urlpatterns = [
     path('del_bus/<int:pk>', views.del_bus),
     path('up_bus/<int:pk>/<str:dn>/<str:br>/<str:sb>', views.up_bus),
     path('view_area/<str:aa>', views.view_area),
-    # path('add_salary/<str:ts>/<str:tn>',views.add_salary),
-    path('all_staf_salary',views.all_staf_salary)
+    path('add_faculty/<str:fn>/<str:fp>/<str:fs>/<str:sof>',views.add_faculty),
+    path('all_faculty',views.all_faculty),
+    path('del_faculty/<int:pk>',views.del_faculty),
+    path('up_faculty/<int:pk>/<str:fn>/<str:fp>/<str:fs>/<str:sof>',views.up_faculty),
+    path('view_faculty/<str:vf>',views.view_faculty)
 ]

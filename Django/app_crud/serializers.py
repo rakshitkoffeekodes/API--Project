@@ -20,12 +20,6 @@ class teacherserializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class clarkserializer(serializers.ModelSerializer):
-    class Meta:
-        model = clark
-        fields = '__all__'
-
-
 class courseserializer(serializers.ModelSerializer):
     class Meta:
         model = course
@@ -38,7 +32,7 @@ class busserializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class salaryserializer(serializers.ModelSerializer):
+class Facultyserializer(serializers.ModelSerializer):
     class Meta:
-        model = salary
+        model = Faculty
         fields = '__all__'
